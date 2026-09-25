@@ -214,7 +214,7 @@ The surface behavior, what is really going on underneath, and why that matters. 
 </div>
 <div class="us">
 <div class="tag">THIS</div>
-<div class="big">[What this gives, with the **difference** highlighted]</div>
+<div class="big">[What this gives, with the <strong>difference</strong> highlighted]</div>
 </div>
 </div>
 
