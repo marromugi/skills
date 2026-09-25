@@ -63,8 +63,10 @@ Adjust the slide set to the idea: split a slide that's overcrowded, and drop one
 Save it as `docs/proposals/<idea-name>.md` in the working directory unless the user names another place. Then export HTML next to it so it can be opened in a browser:
 
 ```bash
-npx -y @marp-team/marp-cli@latest docs/proposals/<idea-name>.md -o docs/proposals/<idea-name>.html
+npx -y @marp-team/marp-cli@latest docs/proposals/<idea-name>.md -o docs/proposals/<idea-name>.html < /dev/null
 ```
+
+(The `< /dev/null` matters: without it, the CLI can hang waiting for input.)
 
 If the export fails (no Node, no network), keep the Markdown and tell the user how to render it (the Marp CLI command above, or the Marp extension for VS Code).
 
