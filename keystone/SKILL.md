@@ -29,22 +29,20 @@ Keep these out: tech stack, architecture, data models, screen specs, concrete vi
 
 A proposal deck that reads like a document has failed, even if every fact in it is right. The reader should be carried from one slide to the next, the way a good pitch unfolds: first they picture a person in a moment, then they feel the problem, then the insight turns it around, and only then does the concept land — as the answer to what they've just been shown.
 
-The template follows that arc:
+The template follows that arc, in six chapters shown in a progress bar across the top of every slide:
 
-1. **Title** — the name and a tagline
-2. **Scene** — one person, one place, one moment; the reader should be able to picture it
-3. **Target** — who that person is
-4. **Problem** — what goes wrong for them, in one line
-5. **Insight** — the turn: what is really going on underneath
-6. **Core concept** — the answer, on its own slide, in large type
-7. **How it works** — three steps
-8. **Why they stay** — what builds up with use
-9. **Difference** — others give X, this gives Y
-10. **Guardrails** — what we do / what we don't
-11. **World and tone** — keywords only
-12. **First version** — the one thing it must prove
-13. **Next** — the three things to verify first
-14. **Appendix** — the dense reference material (alternatives table, guardrails with reasons, scope, success signals, risks) for the people who design and build it
+| Chapter | Slides |
+| --- | --- |
+| — | **Title** — the name and a tagline |
+| 01 Scene | **Scene** — one person, one place, one moment · **Target** — who that person is |
+| 02 Problem | **Problem** — what goes wrong, in one line · **Insight** — the turn: what is really going on (on red, because this is where the story turns) |
+| 03 Concept | **Core concept** — the answer, on navy, in large type |
+| 04 Experience | **How it works** — three steps · **Why they stay** — what builds up with use |
+| 05 Difference | **Difference** — others give X, this gives Y · **Guardrails** — do / don't · **World and tone** — keywords only |
+| 06 Next | **First version** — the one thing it must prove · **Next** — the three things to verify first |
+| — | **Appendix** — the dense reference material (alternatives, guardrails with reasons, scope, success signals, risks) for the people who design and build it |
+
+Translate the chapter names in the `header:` line of the front matter into the user's language, and keep every slide's `chN` class and ghost number matching its chapter — that is what makes the progress bar move.
 
 Read the slide titles alone, top to bottom: they should tell the story by themselves. If one of them doesn't follow from the one before, the order or the wording is off.
 
@@ -54,7 +52,14 @@ Read the slide titles alone, top to bottom: they should tell the story by themse
 - **Very few words.** Statement slides (scene, problem, insight, concept, why they stay, first version) carry one or two lines and at most one supporting line. Other slides carry at most three short items, each a phrase of about 15 Japanese characters or less. When something doesn't fit, it doesn't belong on the slide: move it to the appendix or to presenter notes (`<!-- ... -->`), where the design team can still read it.
 - **Highlight the key words.** Wrap the one phrase that matters most on each slide in `**...**` — or `<strong>...</strong>` inside the template's HTML blocks, where Markdown isn't parsed; the theme turns it red. One highlight per slide — if everything is highlighted, nothing is.
 - **Break lines by hand.** On large-type slides, put `<br>` at natural phrase boundaries so no line ends mid-word and no line is left with one or two characters.
-- **Use the layouts.** The theme has a class for each kind of slide — `lead`, `statement`, `concept`, `divider`, `appendix` — and blocks for steps, others-vs-this, do/don't, keyword chips, and a persona card. Use them as the template does rather than falling back to bullet lists; the variety is what keeps the deck from feeling like a document.
+- **Use the layouts, and don't restyle them.** The theme already carries the layout system, so the deck stays consistent without any extra CSS:
+  - *Grid* — fixed side margins, and on title-and-body slides the title always starts at the same height, so the eye doesn't jump when paging.
+  - *Golden split (38.2 : 61.8)* — the `lead` and `split` slides divide the width at the golden ratio: a colored panel carries the label and one big phrase, the wider side carries the content. The others-vs-this cards use the same ratio.
+  - *Rule of thirds* — `statement`, `turn` and `concept` slides anchor their text to the lower third line instead of the dead center.
+  - *Type scale ×1.618* — only four sizes (18 / 29 / 47 / 76px). Don't add inline font sizes; if text doesn't fit, cut words or split the slide.
+  - *Jump rate* — statement slides have a large gap between headline and body; appendix slides a small one.
+  Pick the class that matches what the slide does — `statement` for one message, `turn` for the insight, `concept` for the concept, `split` when a name or principle deserves its own panel, and the steps / vs / do-don't / chips / numbered-list blocks for the rest — rather than falling back to bullet lists.
+- **Keep split slides short.** The content side of a `split` slide is narrow: list items there should stay around 12 Japanese characters so they don't wrap.
 - **Concrete people and moments.** "A 26-year-old office worker opening the fridge at 10pm" beats "busy young professionals".
 
 ## How to work
