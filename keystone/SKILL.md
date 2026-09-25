@@ -1,6 +1,6 @@
 ---
 name: keystone
-description: Writes a product proposal (企画書) for an app or service idea from a planner's point of view, as a concept presentation deck (Marp Markdown slides, exported to HTML) built around its core concept — who it's for, the insight behind it, the value it promises, and how it differs from the alternatives — so that the people who design and build it later can make every decision by returning to that concept. Keeps the look and world abstract and leaves technical design out. Use this skill whenever the user has an app or service idea — from a one-line hunch to a detailed memo — and wants it written up as a proposal or pitch, wants to sharpen its concept, or wants something to hand off before design and implementation, even if they never say "proposal" (e.g. 「このアイデアを企画書にして」「アプリの企画をまとめたい」「コンセプトを固めたい」「作る前に何のアプリか整理したい」「このネタで企画書書いて」「企画のスライド作って」).
+description: Writes a product proposal (企画書) for an app or service idea from a planner's point of view, as a story-driven concept deck (Marp Markdown slides, exported to HTML) built around its core concept — who it's for, the insight behind it, the value it promises, and how it differs from the alternatives — so that the people who design and build it later can make every decision by returning to that concept. Keeps the look and world abstract and leaves technical design out. Use this skill whenever the user has an app or service idea — from a one-line hunch to a detailed memo — and wants it written up as a proposal or pitch, wants to sharpen its concept, or wants something to hand off before design and implementation, even if they never say "proposal" (e.g. 「このアイデアを企画書にして」「アプリの企画をまとめたい」「コンセプトを固めたい」「作る前に何のアプリか整理したい」「このネタで企画書書いて」「企画のスライド作って」).
 ---
 
 # keystone — the stone that holds the arch together
@@ -25,13 +25,36 @@ Keep these out: tech stack, architecture, data models, screen specs, concrete vi
 - **It can say no.** A useful concept rules things out. If every plausible feature fits it, it's too vague to guide anyone. Write down what fits and what would betray it.
 - **It is different in a way that matters to the user.** Not "uses AI" or "is prettier" — a difference the target user would notice and care about compared with what they use today.
 
-## Making the deck easy to read
+## Telling it as a story
 
-The deck is read, not presented, so each slide has to make its point on its own.
+A proposal deck that reads like a document has failed, even if every fact in it is right. The reader should be carried from one slide to the next, the way a good pitch unfolds: first they picture a person in a moment, then they feel the problem, then the insight turns it around, and only then does the concept land — as the answer to what they've just been shown.
 
-- **One message per slide.** The slide title is that message as a sentence ("疲れた夜は、考える気力が残っていない"), not a label ("インサイト"). The small label above it says which part of the proposal this is.
-- **Few words on the slide.** At most about five short lines. Phrases over sentences. If it doesn't fit, split the slide or move the reasoning into presenter notes (`<!-- ... -->`), which the design team can still read.
-- **Tables for comparisons.** Alternatives, today's workarounds, in/out of scope — anything with two or more axes reads better as a table than as nested bullets.
+The template follows that arc:
+
+1. **Title** — the name and a tagline
+2. **Scene** — one person, one place, one moment; the reader should be able to picture it
+3. **Target** — who that person is
+4. **Problem** — what goes wrong for them, in one line
+5. **Insight** — the turn: what is really going on underneath
+6. **Core concept** — the answer, on its own slide, in large type
+7. **How it works** — three steps
+8. **Why they stay** — what builds up with use
+9. **Difference** — others give X, this gives Y
+10. **Guardrails** — what we do / what we don't
+11. **World and tone** — keywords only
+12. **First version** — the one thing it must prove
+13. **Next** — the three things to verify first
+14. **Appendix** — the dense reference material (alternatives table, guardrails with reasons, scope, success signals, risks) for the people who design and build it
+
+Read the slide titles alone, top to bottom: they should tell the story by themselves. If one of them doesn't follow from the one before, the order or the wording is off.
+
+## Making each slide easy to read
+
+- **One message per slide, and that's all the slide says.** The title is the message as a sentence ("疲れた夜は、考える気力が残っていない"), not a label ("インサイト"); the small label above it says which part of the story this is.
+- **Very few words.** Statement slides (scene, problem, insight, concept, why they stay, first version) carry one or two lines and at most one supporting line. Other slides carry at most three short items, each a phrase of about 15 Japanese characters or less. When something doesn't fit, it doesn't belong on the slide: move it to the appendix or to presenter notes (`<!-- ... -->`), where the design team can still read it.
+- **Highlight the key words.** Wrap the one phrase that matters most on each slide in `**...**`; the theme turns it red. One highlight per slide — if everything is highlighted, nothing is.
+- **Break lines by hand.** On large-type slides, put `<br>` at natural phrase boundaries so no line ends mid-word and no line is left with one or two characters.
+- **Use the layouts.** The theme has a class for each kind of slide — `lead`, `statement`, `concept`, `divider`, `appendix` — and blocks for steps, others-vs-this, do/don't, keyword chips, and a persona card. Use them as the template does rather than falling back to bullet lists; the variety is what keeps the deck from feeling like a document.
 - **Concrete people and moments.** "A 26-year-old office worker opening the fridge at 10pm" beats "busy young professionals".
 
 ## How to work
@@ -56,17 +79,17 @@ Before writing, work out what the target user uses today instead: competing apps
 
 ### 4. Write the deck
 
-Copy `assets/slides-template.md` and fill it in. It holds the Marp setup, a simple theme, and one slide per part of the proposal: title, core concept, insight, target and persona, problem, experience, concept guardrails (fits / betrays), alternatives, world and tone, first version and success, risks and open questions. Write the core concept slide first and with the most care; then make every other slide visibly follow from it. If a slide says something the concept doesn't explain, either the slide is wrong or the concept is missing something — fix whichever it is.
+Copy `assets/slides-template.md` and fill it in, keeping its theme and its story order. Decide the concept slide first and with the most care; then write the slides before it so they lead up to it, and the slides after it so they visibly follow from it. If a slide says something the concept doesn't explain, either the slide is wrong or the concept is missing something — fix whichever it is.
 
-Adjust the slide set to the idea: split a slide that's overcrowded, and drop one that truly doesn't apply (mention that in the notes rather than dropping it silently). Keep the whole deck around 10–14 slides.
+Adjust the slide set to the idea: split a slide that's overcrowded rather than shrinking the text, and drop one that truly doesn't apply (mention that in the notes rather than dropping it silently). The main story is usually 12–14 light slides, plus a few appendix slides.
 
 Save it as `docs/proposals/<idea-name>.md` in the working directory unless the user names another place. Then export HTML next to it so it can be opened in a browser:
 
 ```bash
-npx -y @marp-team/marp-cli@latest docs/proposals/<idea-name>.md -o docs/proposals/<idea-name>.html < /dev/null
+npx -y @marp-team/marp-cli@latest docs/proposals/<idea-name>.md --html -o docs/proposals/<idea-name>.html < /dev/null
 ```
 
-(The `< /dev/null` matters: without it, the CLI can hang waiting for input.)
+(`--html` lets the theme's layout blocks render. The `< /dev/null` matters: without it, the CLI can hang waiting for input.)
 
 If the export fails (no Node, no network), keep the Markdown and tell the user how to render it (the Marp CLI command above, or the Marp extension for VS Code).
 
@@ -83,7 +106,8 @@ When the user changes the concept, revisit every slide; a new concept usually ch
 - [ ] The target is a specific persona in a specific moment
 - [ ] The alternatives are named, and the difference is one the target user would care about
 - [ ] The guardrails rule things out; the "betrays" list is real
-- [ ] Every slide title is a message, and no slide is crowded
+- [ ] Reading only the slide titles tells the story from scene to concept to next steps
+- [ ] No main-story slide has more than three short items; dense material is in the appendix or notes
 - [ ] World and tone stay at the level of direction; no concrete visual design or tech
 - [ ] Risks and open questions are listed, not hidden
 - [ ] The Markdown is saved and the HTML export was attempted
